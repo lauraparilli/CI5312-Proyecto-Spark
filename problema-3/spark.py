@@ -140,11 +140,22 @@ df_results = analyze_with_dataframes(df)
 sql_results = analyze_with_sql(spark)
 
 # Mostrar resultados
-print("\nTop películas por año (DataFrames):")
+print("\n--- Top 5 películas por año \n\nDataFrames:")
 df_results["top_movies_per_year"].show(20, truncate=False)
-
-print("\nTendencias por género (SQL) - solo géneros con datos completos:")
-sql_results["genre_trends_sql"].show(truncate=False)
+print("\nSQL:")
 sql_results["top_movies_per_year_sql"].show(truncate=False)
-sql_results["decade_avg_ratings_sql"].show(truncate=False)
+
+print("\n--- Tendencias de género por año \n\nDataFrames:")
+df_results["yearly_genre_ratings"].show(20,truncate=False)
+print("\nSQL:")
 sql_results["yearly_genre_ratings_sql"].show(truncate=False)
+
+print("\n--- Promedio de calificación por década\n\nDataFrame:")
+df_results["decade_avg_ratings"].show(truncate=False)
+print("\nSQL:")
+sql_results["decade_avg_ratings_sql"].show(truncate=False)
+
+print("\n--- Tendencias de género (análisis pre/post 2000):\n\nDataframes")
+df_results["genre_trends"].show(truncate=False)
+print("\nSQL:")
+sql_results["genre_trends_sql"].show(truncate=False)
